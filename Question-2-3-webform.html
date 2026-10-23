@@ -111,7 +111,12 @@
               $referencedElement = $input;
             }
       // R.G. hint: fix next line ;)
-            $error = $('<a>' + message + '</a>');
+            /*
+            [Hye Ran Yoo] I put the href attribute to put the link feature below code.
+            '$referencedElement' is each input tag, attr('id') is its id name to move to error field directly.
+            In addition, I put more id value to match the aria-describedby. After click the error item, the aria-describedby attribute search the information of id value, and give the information.
+            */
+            $error = $('<a href=#'+ $referencedElement.attr("id") +' id='+input +'_description>' + message + '</a>');
             $error.click(function (e) {
               // If we rely on the link's href pointing to the input's ID, it doesn't trigger forms mode in screen readers
               $referencedElement.focus();
@@ -122,7 +127,10 @@
       
             if ($(':not(form):focus').length === 0) {
               // See https://stackoverflow.com/questions/46134247/jquery-setting-focus-doesnt-work-in-ie11/
-            
+              /* [Hye Ran Yoo]
+              I put the focus of error area box to give the information about the error list.
+              */
+              $error.focus();
             }
           } else {
             if ($input.is(':checkbox')) {
@@ -144,7 +152,12 @@
             validateInput('gender', 'Please tell us your gender!');
             validateInput('accept_agbs', 'You must accept our terms and conditions!');
       
-            if ($('.error').length === 0) {
+            /* [Hye Ran Yoo]
+            I change the name 'error' to errors. The class name of fieldset lelated to errors is 'errors' not 'error'.
+            The validateInput fuction can put the error fields into errors class when length of some field value is zero.
+            Even though it's a required field, it's empty before fixing, and this alert box popped up.
+            */
+            if ($('.errors').length === 0) {
               return alert('All inputs are valid.');
             }
           }
