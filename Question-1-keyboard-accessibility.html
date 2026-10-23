@@ -25,7 +25,7 @@ a{
   color: #006b3a;
 }
 main a{
-  outline: none;
+  /* [Hye Ran Yoo] I removed the 'outline: none;', because I can not see the focus line when tabbing.*/
 }
 h2 {
   margin-top: 0;
@@ -206,7 +206,10 @@ article p {
       <nav class="menu">
         <a href="#">Home</a>
         <a href="#">Politics</a>
-        <a href="#" tabindex="-1">Business</a>
+        <!-- [Hye Ran Yoo] 
+        I removed tabindex="-1" attribute on Business menu, this Business is also a menu, so needs a focus.
+        if 'tabindex=-1' put, it can not reach focus .-->
+        <a href="#">Business</a>
         <a href="#">Entertainment</a>
         <a href="#">Sports</a>
         <a href="#" class="btn-search pull-right"><img src="https://raw.githubusercontent.com/udacity/ud891/2de2a0688c68809a3b453db3a24b1a59e8401459/lesson2-focus/02-dom-order/images/search.svg" alt="Search" />Search</a> 
@@ -218,7 +221,11 @@ article p {
     <div class="container">
       <h3>Like the Funion? Consider joining our newsletter!</h3>
       <input type="text">
-      <button type="button" onfocus="getFocus()">Sign up</button></div>
+      <!-- [Hye Ran Yoo] 
+       I changed the event attribute of onfocus to onclick on button tag. 
+       Because of 'onfocus', a new window opened automatically, so I lost the focus on original page. 
+       -->
+      <button type="button" onclick="getFocus()">Sign up</button></div>
       
     </div>
   </div>
@@ -239,11 +246,11 @@ article p {
     <div class="side-by-side">
       <div class="column">
         <div class="tier-header">
-          <h2 tabindex="0">In the news</h2>
+          <h2>In the news</h2><!-- [Hye Ran Yoo] Because of 'tabindex 0', heading tag is focused when tabbing, so I removed this attribute. -->
         </div>
         <article>
           <h3 class="headline">Bee wonders if maybe everyone else is a drone and he's the only one who has it "figured out."</h3>
-          <p><a href="#" tabindex="1"><b>Read More</b></a></p>
+          <p><a href="#"><b>Read More</b></a></p> <!--[Hye Ran Yoo] Because of 'tabindex=1' attribute, tab order is changed, 'Read More' is reached before tabindex=0.  -->
           <img src="https://github.com/udacity/ud891/blob/gh-pages/lesson2-focus/02-dom-order/images/bee.jpg?raw=true" alt="A bee on top of a flower" />
         </article>
       </div>
