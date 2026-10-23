@@ -29,23 +29,42 @@
         <h1>Feedback form</h1>
     <form>
         <div class="control">
-          <label>Full name <span class="required">*</span></label><input id="name" name="name" type="text" />
+          <!--[Hye Ran Yoo] 
+          I put the for='name' attribute, when listening, NVDA did not say the information of input box, 
+          so I connected the label to the input.
+          In addition, I put more (required) text and aria-required='true' to show it is a required field.
+          'aria-required=true' attribute just give the information, not restrict the function or action.
+          I checked the 'validateInput' function in javascript part, this function check the 'full name', 'biography', 'gender' and accept_agbs fields.
+          I did not put the required attribute directly in the input element, the browser stops the form, so the error messages from validateInput do not appear.
+          -->
+          <label for="name">Full name <span class="required">*</span> (required)</label><input id="name" name="name" type="text" aria-required="true"/>
         </div>
         <div class="control">
-          <label>Biography</label><textarea id="biography" name="biography" type="text"></textarea>
-          <span>Include examples on your skills in JavaScript.</span>
+          <!--[Hye Ran Yoo] I put the for='biography' attribute, (required) text and aria-required='true' and the aria-describedby='biography_desc'.
+          The aria-describedby='biography_desc' connect the span tag below the textarea of biography-->
+          <label for="biography">Biography (required)</label><textarea id="biography" name="biography" type="text" aria-required="true" aria-describedby="biography_desc"></textarea>
+          <!--[Hye Ran Yoo] I put the attribute of id="biography_desc" to connect with upper textarea tag. -->
+          <span id="biography_desc">Include examples on your skills in JavaScript.</span>
         </div>
-        
-          <div>Gender</div>
+
+        <!--[Hye Ran Yoo] I put the fieldset tag, because this make the same meaning group.-->
+        <fieldset> 
+          <!--[Hye Ran Yoo] 
+          I changed div tag to legend tag, because legend tag give the information of question.
+          In addition, put more '(required)' text. 
+          This also give the information as required field.
+          -->
+          <legend>Gender (required)</legend>
           <div class="control">
-            <input id="gender_male" name="gender" type="radio" value="male" /><label>Male</label>
+            <input id="gender_male" name="gender" type="radio" value="male" /><label for="gender_male">Male</label><!--[Hye Ran Yoo] I put the for='gender_male'.-->
           </div>
           <div class="control">
-            <input id="gender_female" name="gender" type="radio" value="female" /><label>Female</label>
+            <input id="gender_female" name="gender" type="radio" value="female" /><label  for="gender_female">Female</label><!--[Hye Ran Yoo] I put the for='gender_female'.-->
           </div>
-        
+        </fieldset>
         <div class="control">
-          <input id="accept_agbs" name="accept_agbs" type="checkbox" value="1" /><label>I accept the terms and conditions</label>
+          <!--[Hye Ran Yoo] I put the for='accept_agbs', required text and aria-required='true'. -->
+          <input id="accept_agbs" name="accept_agbs" type="checkbox" value="1" aria-required="true"/><label for="accept_agbs">I accept the terms and conditions (required)</label>
         </div>
         <div class="control">
           <input name="validate" type="hidden" value="1" /><input type="submit" value="Register" />
